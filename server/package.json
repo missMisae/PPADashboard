@@ -1,0 +1,23 @@
+{
+    "name": "server",
+    "version": "1.0.0",
+    "description": "tu demo gcp functions",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node index.js"
+    },
+    "keywords": [
+        "swagger"
+    ],
+    "author": "Missy with an attitude aka misae",
+    "license": "n/a",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "firebase-admin": "^9.10.0",
+        "json-refs": "^3.0.15",
+        "swagger-jsdoc": "^7.0.0-rc.2",
+        "swagger-ui-express": "^4.1.6",
+        "yamljs": "^0.3.0"
+    }
+}

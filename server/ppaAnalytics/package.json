@@ -1,0 +1,19 @@
+{
+    "name": "ppaAnalytics",
+    "version": "1.0.0",
+    "description": "ppa loan analytics for tu demo",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "functions-framework --target=getSchemaObject"
+    },
+    "keywords": [
+        "forge"
+    ],
+    "author": "Praetorian Solutions",
+    "license": "ISC",
+    "dependencies": {
+        "@google-cloud/functions-framework": "^1.7.1",
+        "swagger-ui-express": "^4.1.6"
+    }
+}

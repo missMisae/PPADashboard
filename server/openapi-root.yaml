@@ -1,0 +1,12 @@
+openapi: '3.0.0'
+info:
+  title: root yaml
+  description: forge swagger
+  version: 1.0.0
+schemes:
+  - http
+produces:
+  - application/json
+paths:
+  /pathObject: 
+    $ref: './path-object/openapi3-functions.yaml#/paths/~1ppaAnalytics'
