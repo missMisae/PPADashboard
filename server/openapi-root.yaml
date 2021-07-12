@@ -8,5 +8,5 @@ schemes:
 produces:
   - application/json
 paths:
-  /pathObject: 
-    $ref: './path-object/openapi3-functions.yaml#/paths/~1ppaAnalytics'
+  /immediateInsights: 
+    $ref: './immediateInsights/openapi3-functions.yaml#/paths/~1immediateInsights'
