@@ -8,10 +8,11 @@ import React from "react";
 import Chart from "chart.js";
 import { Bar } from "react-chartjs-2";
 
-if (window.Chart) {
-    parseOptions(Chart, chartOptions());
-}
+
 const BarChart = (props) => {
+    if (window.Chart) {
+        parseOptions(Chart, chartOptions());
+    }
     return (
         <Bar
             data={props.chartData}

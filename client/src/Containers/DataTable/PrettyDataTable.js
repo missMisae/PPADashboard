@@ -21,7 +21,8 @@ import Typography from "@material-ui/core/Typography";
 if (window.Chart) {
     parseOptions(Chart, chartOptions());
 }
-const PrettyDataTable = (props) => {
+const PrettyDataTable = ({ tableData }) => {
+    console.log('tableData = ', tableData)
 
     const useStyles = makeStyles(componentStyles);
     const classes = useStyles();
@@ -55,7 +56,8 @@ const PrettyDataTable = (props) => {
                 }
                 classes={{ root: classes.cardHeaderRoot }}
             ></CardHeader>
-            <StickyHeadTable />
+            {tableData && tableData.length > 0 &&
+                <StickyHeadTable tableData={tableData} />}
         </Card>
     );
 }

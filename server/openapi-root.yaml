@@ -10,3 +10,8 @@ produces:
 paths:
   /immediateInsights: 
     $ref: './immediateInsights/openapi3-functions.yaml#/paths/~1immediateInsights'
+  /insightsOverTime: 
+    $ref: './insightsOverTime/openapi3-functions.yaml#/paths/~1insightsOverTime'
+  /susLoans: 
+    $ref: './susLoans/openapi3-functions.yaml#/paths/~1susLoans'
+  

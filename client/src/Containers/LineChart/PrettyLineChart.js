@@ -1,6 +1,5 @@
 import React from "react";
 // javascipt plugin for creating charts
-import Chart from "chart.js";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -10,18 +9,13 @@ import Grid from "@material-ui/core/Grid";
 import LineChart from "../../components/Charts/lineChart"
 import Box from "@material-ui/core/Box";
 
-import {
-    chartOptions,
-    parseOptions,
-} from "variables/charts.js";
+
 import componentStyles from "../../assets/theme/views/dashboard"
 
 import Typography from "@material-ui/core/Typography";
 // @material-ui/icons components
 
-if (window.Chart) {
-    parseOptions(Chart, chartOptions());
-}
+
 const PrettyLineChart = (props) => {
 
     const useStyles = makeStyles(componentStyles);
@@ -72,7 +66,8 @@ const PrettyLineChart = (props) => {
             ></CardHeader>
             <CardContent>
                 <Box position="relative" height="350px">
-                    <LineChart chartData={props.lineChartData} />
+                    {props.lineChartData.datasets && props.lineChartData.datasets.length > 0 &&
+                        <LineChart chartData={props.lineChartData} />}
                 </Box>
             </CardContent>
         </Card>
