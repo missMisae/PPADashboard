@@ -5,9 +5,7 @@ import { useTheme } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-// @material-ui/icons components
-import ArrowDownward from "@material-ui/icons/ArrowDownward";
-import ArrowUpward from "@material-ui/icons/ArrowUpward";
+
 import LocationOn from "@material-ui/icons/LocationOn";
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import InsertChartOutlined from "@material-ui/icons/InsertChartOutlined";
@@ -20,9 +18,16 @@ import componentStyles from "assets/theme/components/header.js";
 
 const useStyles = makeStyles(componentStyles);
 
-const Header = () => {
+const Header = ({ data, frauds }) => {
   const classes = useStyles();
   const theme = useTheme();
+  let formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+  });
+
+
   return (
     <>
       <div className={classes.header}>
@@ -39,110 +44,32 @@ const Header = () => {
                   title="Alaska"
                   icon={LocationOn}
                   color="bgInfo"
-                  footer={
-                    <>
-                      <Box
-                        component="span"
-                        fontSize=".875rem"
-                        color={theme.palette.success.main}
-                        marginRight=".5rem"
-                        display="flex"
-                        alignItems="center"
-                        height="1.5rem!important"
-                      >
-                      </Box>
-                    </>
-                  }
                 />
               </Grid>
               <Grid item xl={3} lg={6} xs={12}>
                 <CardStats
                   subtitle="Number of Loans Given"
-                  title="350,897"
+                  title={data.loansGiven}
                   icon={InsertChartOutlined}
                   color="bgError"
-                  footer={
-                    <>
-                      <Box
-                        component="span"
-                        fontSize=".875rem"
-                        color={theme.palette.success.main}
-                        marginRight=".5rem"
-                        display="flex"
-                        alignItems="center"
-                      >
-                        <Box
-                          component={ArrowUpward}
-                          width="1.5rem!important"
-                          height="1.5rem!important"
-                        />{" "}
-                        3.48%
-                      </Box>
-                      <Box component="span" whiteSpace="nowrap">
-                        Since last month
-                      </Box>
-                    </>
-                  }
+
                 />
               </Grid>
               <Grid item xl={3} lg={6} xs={12}>
                 <CardStats
                   subtitle="Total Amount Dispursed"
-                  title="2,356"
+                  title={formatter.format(data.totalDispersed)}
                   icon={MonetizationOnIcon}
                   color="bgWarning"
-                  footer={
-                    <>
-                      <Box
-                        component="span"
-                        fontSize=".875rem"
-                        color={theme.palette.error.main}
-                        marginRight=".5rem"
-                        display="flex"
-                        alignItems="center"
-                      >
-                        <Box
-                          component={ArrowDownward}
-                          width="1.5rem!important"
-                          height="1.5rem!important"
-                        />{" "}
-                        3.48%
-                      </Box>
-                      <Box component="span" whiteSpace="nowrap">
-                        Since last week
-                      </Box>
-                    </>
-                  }
+
                 />
               </Grid>
               <Grid item xl={3} lg={6} xs={12}>
                 <CardStats
                   subtitle="Number of Suspicious Loans"
-                  title="924"
+                  title={frauds}
                   icon={ErrorIcon}
                   color="bgWarningLight"
-                  footer={
-                    <>
-                      <Box
-                        component="span"
-                        fontSize=".875rem"
-                        color={theme.palette.warning.main}
-                        marginRight=".5rem"
-                        display="flex"
-                        alignItems="center"
-                      >
-                        <Box
-                          component={ArrowDownward}
-                          width="1.5rem!important"
-                          height="1.5rem!important"
-                        />{" "}
-                        1.10%
-                      </Box>
-                      <Box component="span" whiteSpace="nowrap">
-                        Since yesterday
-                      </Box>
-                    </>
-                  }
                 />
               </Grid>
 

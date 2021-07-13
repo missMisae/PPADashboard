@@ -7,7 +7,8 @@ const yamljs = require("yamljs");
 const resolveRefs = require("json-refs").resolveRefs;
 var cors = require('cors');
 const { getImmediateInsights } = require("./immediateInsights/index.js");
-
+const { getInsightsOverTime } = require("./insightsOverTime/index.js");
+const { getSusLoans } = require("./susLoans/index.js");
 /**
  * Return JSON with resolved references
  * @param {array | object} root - The structure to find JSON References within (Swagger spec)
@@ -45,6 +46,8 @@ const createServer = async () => {
 
     app.use("/api/doc", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
     app.use("/immediateInsights", getImmediateInsights)
+    app.use("/insightsOverTime", getInsightsOverTime)
+    app.use("/susLoans", getSusLoans)
 
     const server = http.createServer(app);
 

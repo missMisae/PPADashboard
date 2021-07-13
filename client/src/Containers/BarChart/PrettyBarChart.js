@@ -1,6 +1,5 @@
 import React from "react";
 // javascipt plugin for creating charts
-import Chart from "chart.js";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -9,19 +8,15 @@ import { useTheme } from "@material-ui/core/styles";
 import BarChart from "../../components/Charts/barChart"
 import Box from "@material-ui/core/Box";
 
-import {
-    chartOptions,
-    parseOptions,
-} from "variables/charts.js";
+
 import componentStyles from "../../assets/theme/views/dashboard"
 
 
 // @material-ui/icons components
 
-if (window.Chart) {
-    parseOptions(Chart, chartOptions());
-}
+
 const PrettyBarChart = (props) => {
+    console.log("props = ", props)
 
     const useStyles = makeStyles(componentStyles);
     const classes = useStyles();
@@ -55,7 +50,9 @@ const PrettyBarChart = (props) => {
             ></CardHeader>
             <CardContent>
                 <Box position="relative" height="350px">
-                    <BarChart chartData={props.barChartData} />
+                    {props.barChartData.datasets && props.barChartData.datasets.length > 0 &&
+                        <BarChart chartData={props.barChartData} />
+                    }
                 </Box>
             </CardContent>
         </Card>

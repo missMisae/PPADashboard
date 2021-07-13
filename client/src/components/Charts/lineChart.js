@@ -9,10 +9,11 @@ import Chart from "chart.js";
 // react plugin used to create charts
 import { Line } from "react-chartjs-2";
 
-if (window.Chart) {
-    parseOptions(Chart, chartOptions());
-}
+
 const LineChart = (props) => {
+    if (window.Chart) {
+        parseOptions(Chart, chartOptions());
+    }
     return (
         <Line
             data={props.chartData}

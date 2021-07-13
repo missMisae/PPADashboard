@@ -1,17 +1,16 @@
 {
-    "name": "immediateInsights",
+    "name": "susLoans",
     "version": "1.0.0",
     "description": "ppa loan analytics for tu demo",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "functions-framework --target=getImmediateInsights"
+        "start": "functions-framework --target=getInsightsOverTime"
     },
     "keywords": [
         "forge"
     ],
     "author": "Misae",
-    "license": "ISC",
     "dependencies": {
         "cors": "^2.8.5",
         "firebase-admin": "^9.10.0",

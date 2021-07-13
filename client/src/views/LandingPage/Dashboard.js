@@ -14,6 +14,7 @@ import PrettyDataTable from "Containers/DataTable/PrettyDataTable"
 // core components
 import Header from "components/Headers/Header.js";
 import componentStyles from "assets/theme/views/dashboard.js";
+import { getImmediateInsights, getInsightsOverTime, getSusLoans } from "services/services"
 
 const useStyles = makeStyles(componentStyles);
 
@@ -21,33 +22,33 @@ function Dashboard() {
   const classes = useStyles();
   const theme = useTheme();
 
-  const [lineChartData, setLineChartData] = React.useState(
-    {
-      labels: ["May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-      datasets: [
-        {
-          label: "Performance",
-          data: [0, 20, 10, 30, 15, 40, 20, 60, 60],
-        },
-      ],
-    }
-  )
+  const [lineChartData, setLineChartData] = React.useState({});
+  const [tableData, setTableData] = React.useState({})
+  const [barChartData, setBarChartData] = React.useState({});
+  const [headerData, setHeaderData] = React.useState({})
+  const [numFrauds, setNumFrauds] = React.useState(0)
 
-  const [barChartData, setBarChartData] = React.useState(
-    {
-      labels: ["May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-      datasets: [
-        {
-          label: "Performance",
-          data: [0, 20, 10, 30, 15, 40, 20, 60, 60],
-        },
-      ],
+  React.useEffect(() => {
+    const getServices = async () => {
+      let insights = await getInsightsOverTime()
+      let immediate = await getImmediateInsights()
+      let sus = await getSusLoans();
+      setLineChartData(insights.approvedPerMonth)
+      setBarChartData(insights.amountPerMonth)
+      setHeaderData(immediate)
+      setTableData(sus.locationData)
+      setNumFrauds(sus.fraudCount)
     }
-  )
+    getServices();
+
+
+  }, [])
+
+
 
   return (
     <>
-      <Header />
+      <Header data={headerData} frauds={numFrauds} />
       {/* Page content */}
       <Container
         maxWidth={false}
@@ -80,7 +81,7 @@ function Dashboard() {
             marginBottom="3rem!important"
             classes={{ root: classes.gridItemRoot }}
           >
-            <PrettyDataTable />
+            <PrettyDataTable tableData={tableData} />
           </Grid>
 
         </Grid>
