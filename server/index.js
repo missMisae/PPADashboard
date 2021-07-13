@@ -5,10 +5,8 @@ const express = require("express");
 const swaggerUi = require("swagger-ui-express");
 const yamljs = require("yamljs");
 const resolveRefs = require("json-refs").resolveRefs;
-const { getSchemaObject } = require("./schema-object/index");
 var cors = require('cors');
-const { getInfoObject } = require("./info-object/index");
-const { getPathObject } = require("./path-object/index");
+const { getImmediateInsights } = require("./immediateInsights/index.js");
 
 /**
  * Return JSON with resolved references
@@ -46,7 +44,7 @@ const createServer = async () => {
     app.use(express.urlencoded());
 
     app.use("/api/doc", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-    app.use("/schemaObject", getSchemaObject)
+    app.use("/immediateInsights", getImmediateInsights)
 
     const server = http.createServer(app);
 
